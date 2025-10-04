@@ -7,6 +7,9 @@
 
 <div class="text-center">
     <h1 class="display-4">All your expenses!!</h1>
+    <br />
+    <hr />
+    <h3>Total Expenditure: @ViewBag.Total</h3>
     <div class="d-flex justify-content-md-start">
     <a asp-action="Index" asp-controller="CreateExpense" class="btn btn-success">Add</a>
     </div>
@@ -26,6 +29,9 @@
                     <th>
                         Date
                     </th>
+                    <th>
+                        Action
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +50,10 @@
                             </td>
                             <td>
                                 @items.Date
+                            </td>
+                            <td>
+                            <a asp-controller="CreateExpense" asp-action="EditExpense" asp-route-id="@items.Id" class="btn btn-warning">Edit</a>
+                            <a asp-controller="CreateExpense" asp-action="DeleteExpense" asp-route-id="@items.Id" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     }

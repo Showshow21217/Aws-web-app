@@ -12,10 +12,13 @@ namespace Aws_web_app.Controllers
 
         private readonly ExpenseDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger, ExpenseDbContext _context)
+        private readonly Businesslogic _businessLogic;
+
+        public HomeController(ILogger<HomeController> logger, ExpenseDbContext _context, Businesslogic businesslogic)
         {
             _logger = logger;
             _dbContext = _context;
+            _businessLogic = businesslogic;
         }
 
         public IActionResult Index()
@@ -24,15 +27,36 @@ namespace Aws_web_app.Controllers
             return View(model);
         }
 
+        public ActionResult Expense()
+        {
+            var total = _businessLogic.getTotal();
+            var items = _dbContext.Expenses.ToList();
+
+            ViewBag.total = total;
+            return View(items);
+        }
+
+        public ActionResult Login(Login model)
+        {
+            if(model.userName.Equals("Cutie") && model.password.Equals("Iloveu"))
+            {
+                return RedirectToAction("yay");
+            }
+            return View("Suprise");
+        }
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public ActionResult Expense()
+        public IActionResult Suprise() 
+        { 
+            return View();
+        }
+
+        public IActionResult yay()
         {
-            var items = _dbContext.Expenses.ToList();
-            return View(items);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

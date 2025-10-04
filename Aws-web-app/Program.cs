@@ -10,6 +10,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ExpenseDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//Register the sevices
+builder.Services.AddScoped<Businesslogic>();
+
 //builder.Services.AddDbContext<ExpenseDbContext>(options => options.UseInMemoryDatabase("Expense"));
 
 var app = builder.Build();

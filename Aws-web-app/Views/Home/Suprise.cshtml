@@ -1,0 +1,40 @@
+﻿@model Aws_web_app.Models.Login
+
+@{
+    ViewData["Title"] = "Unlock the suprise";
+}
+
+<style>
+    body {
+        background-image: url('https://i.pinimg.com/originals/b8/26/1f/b8261f0163fff2cc01c5cb1159d4767b.gif'); /* path to image */
+        background-size: cover; /* makes it cover full screen */
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh; /* full screen height */
+        margin: 0;
+    }
+</style>
+<body>
+<hr />
+<div class="row , d-flex justify-content-center">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="userName" class="control-label"></label>
+                <input asp-for="userName" class="form-control" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between">
+                <input type="submit" value="LetsGooooo" class="btn btn-primary" asp-action="Login" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
