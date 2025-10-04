@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Expense";
+}
+
+@model List<Expense>
+
+<div class="text-center">
+    <h1 class="display-4">All your expenses!!</h1>
+    <div class="d-flex justify-content-md-start">
+    <a asp-action="Index" asp-controller="CreateExpense" class="btn btn-success">Add</a>
+    </div>
+    <br />
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var items in Model)
+                    {
+                        <tr>
+                            <td>
+                                @items.Id
+                            </td>
+                            <td>
+                                @items.Description
+                            </td>
+                            <td>
+                                @items.Amount
+                            </td>
+                            <td>
+                                @items.Date
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+</div>

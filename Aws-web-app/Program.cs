@@ -1,10 +1,18 @@
+using Aws_web_app.Database;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+builder.Services.AddDbContext<ExpenseDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//builder.Services.AddDbContext<ExpenseDbContext>(options => options.UseInMemoryDatabase("Expense"));
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -24,6 +32,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Urls.Add("http://0.0.0.0:5000");
+//app.Urls.Add("http://0.0.0.0:5000");
 
 app.Run();
